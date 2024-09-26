@@ -7,9 +7,11 @@ export const dragAccessors = {
 }
 
 function nest(...Components) {
-  const factories = Components.filter(Boolean).map(createFactory)
+
   const Nest = ({ children, ...props }) =>
-    factories.reduceRight((child, factory) => factory(props, child), children)
+    Components.filter(Boolean).reduceRight((child, Component) => (
+    <Component {...props}>child}</Component>
+    ), children);
 
   return Nest
 }
